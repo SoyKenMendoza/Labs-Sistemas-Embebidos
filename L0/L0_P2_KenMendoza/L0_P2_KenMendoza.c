@@ -25,8 +25,31 @@ typedef struct {
 } Item;
 
 //Función de interrupciones
-int HandleInterruptions(Item *items, int N, int nro_max_de_elementos) {
+int handleInterruption(Item item, bool* pin1, size_t* counter, StaticStack* stack) {
 
-
-
+    switch (item.input_pin) {
+        case toggle_pin1:
+            *pin1 = !*pin1;
+            return 0;
+        case print_pin1:
+            printf("El valor del Pin1 es: %d\n", *pin1);
+            return 1;
+        case increment_counter:
+            (*counter)++;
+            return 2;
+        case print_counter:
+            printf("El valor del contador es: %zu\n", *counter);
+            return 3;
+        case check_items:
+            printf("El tamaño de la pila es: %d\n", stack->elements);
+            return 5;
+        case exit_full:
+            if (isFull(stack)) {
+                printf("La pila está llena.\n");
+                exit(0);
+            }
+            return 6;
+        default:
+            return -1;
+    }
 }
