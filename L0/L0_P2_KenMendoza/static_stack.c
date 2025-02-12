@@ -17,14 +17,14 @@ typedef struct {
 typedef struct {
 
     Item items[MAX_ITEMS];
-    int top; //Numero de elementos en la pila
+    int top; //Numero del elemento tope en la pila
     int size; //Tamaño de la pila
     int elements; //Número de elementos de la pila
 
 } StaticStack;
 
 //Crear pila
-StaticStack CreateStack(StaticStack* stack) {
+void CreateStack(StaticStack* stack) {
 
     stack->top = -1;
     stack->size = MAX_ITEMS;
@@ -73,6 +73,6 @@ bool pop(StaticStack* stack) {
 int size(StaticStack* stack) {
 
     return stack->elements;
-    
+
 }
 
